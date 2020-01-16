@@ -1,5 +1,8 @@
+# Django Imports
+from django.contrib.auth.hashers import (Argon2PasswordHasher)
+from django.utils.crypto import get_random_string
+
 # Third Party Imports
-from argon2 import PasswordHasher
 from argon2.exceptions import (VerificationError, HashingError)
 
 
@@ -12,14 +15,14 @@ class HashPassword:
 
     def get_hash(self):
         try:
-            ph_obj = PasswordHasher()
-            return ph_obj.hash(password=self.password)
+            ph_obj = Argon2PasswordHasher()
+            return ph_obj.encode(password=self.password, salt=get_random_string())
         except HashingError:
             raise HashingError("Provide valid data type for password.")
 
     def verify_hash(self, _hash):
         try:
-            ph_obj = PasswordHasher()
-            return ph_obj.verify(hash=_hash, password=self.password)
+            ph_obj = Argon2PasswordHasher()
+            return ph_obj.verify(password=self.password, encoded=_hash)
         except VerificationError:
             return False
