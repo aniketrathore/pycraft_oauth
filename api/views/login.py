@@ -1,18 +1,13 @@
 # Standard Imports
 import requests
-import json
 
 # DRF Imports
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import APIException
 
 # Model Imports
 from api.models import (User)
-
-# Utils Import
-from api.utils.generic import (HashPassword)
 
 # Credential Imports
 from credential import *
@@ -35,5 +30,5 @@ class UserLogin(APIView):
                     'client_id': CLIENT_ID, 'client_secret': CLIENT_SECRET}
             r = requests.post('http://0.0.0.0:8000/oauth/token/', data=data)
             return Response({"result": {"user_details": user_details, "token": r.json()}})
-        except APIException:
-            return Response(data={"error": APIException}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            return Response(data={"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
