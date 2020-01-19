@@ -1,20 +1,20 @@
 # Image
 FROM python:3.8.1-buster
 
-# Maintaner
-MAINTAINER aniketrathore
+# Maintainer
+LABEL maintainer="Aniket Rathore <aniketrathore16@gmail.com>"
 
 # Unbuffered enviroment(console logs) for local develoment
 ENV PYTHONUNBUFFERED 1
 
-# Requirements
-COPY requirements.txt .
+# Copying all root files to image.
+COPY . .
 
-# Requirments Intsall
+# Requirements Install
 RUN pip install -r requirements.txt
 
-# Copying root file to working directory.
-COPY ./app /app
-
-# Setup Working Directorty
+# Setup Working Directory
 WORKDIR /app
+
+# Expose port for development server.
+EXPOSE 8000
