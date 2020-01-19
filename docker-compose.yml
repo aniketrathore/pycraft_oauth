@@ -10,10 +10,21 @@ services:
   accounts:
     build: .
     ports:
-      - 8000:8000
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+      - 8000
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - postgres
 
   adminer:
     image: adminer
     ports:
       - 8080:8080
+    depends_on:
+      - postgres
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - accounts
