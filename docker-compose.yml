@@ -1,8 +1,19 @@
 version: "2"
 
 services:
+
+  postgres:
+    image: postgres:12
+    environment:
+      - POSTGRES_PASSWORD=1234
+
   accounts:
     build: .
     ports:
       - 8000:8000
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
