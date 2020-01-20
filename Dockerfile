@@ -21,3 +21,6 @@ WORKDIR /app
 
 # Expose port for development server.
 EXPOSE 8000
+
+# Command to be run when container runs.
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

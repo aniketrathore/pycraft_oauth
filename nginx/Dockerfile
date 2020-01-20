@@ -1,5 +1,5 @@
 # Image pull
-FROM nginx
+FROM nginx:latest
 
 # Delete exiting nginx configurations from image.
 RUN rm /etc/nginx/conf.d/default.conf
