@@ -1,13 +1,12 @@
 # Django Imports
-from django.contrib.auth.hashers import (Argon2PasswordHasher)
+from django.contrib.auth.hashers import Argon2PasswordHasher
 from django.utils.crypto import get_random_string
 
 # Third Party Imports
-from argon2.exceptions import (VerificationError, HashingError)
+from argon2.exceptions import VerificationError, HashingError
 
 
 class HashPassword:
-
     def __init__(self, password):
         if not isinstance(password, str):
             raise ValueError("password should be instance of 'str' class.")

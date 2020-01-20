@@ -1,5 +1,5 @@
 # Django Imports
-from django.contrib.auth.models import (AbstractUser, AbstractBaseUser)
+from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 from django.db import models
 
 
@@ -17,4 +17,4 @@ class User(AbstractUser):
 
     class Meta:
         managed = True
-        db_table = 'user'
+        db_table = "user"
