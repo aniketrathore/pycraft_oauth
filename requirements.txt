@@ -3,4 +3,4 @@ django-oauth-toolkit==1.2.0
 psycopg2==2.8.4
 djangorestframework==3.11.0
 argon2-cffi==19.2.0
-black==19.10b0
+black==24.3.0
